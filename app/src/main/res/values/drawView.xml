@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DrawView">
+        <attr name="cellColor" format="color" />
+        <attr name="edgeColor" format="color" />
+        <attr name="nonCellColor" format="color" />
+        <attr name="playerColor" format="color" />
+        <attr name="labyrinthRows" format="integer" />
+        <attr name="labyrinthCols" format="integer" />
+    </declare-styleable>
+</resources>

@@ -11,17 +11,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Reiniciar"
+        android:text="@string/restart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="363dp"
-        android:layout_height="228dp"
-        android:text="Área para o labirinto"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.example.mazegame.view.DrawView
+        android:id="@+id/drawView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cellColor="@color/black"
+        app:edgeColor="@color/white"
+        app:nonCellColor="@color/red"
+        app:playerColor="@color/red"
+        app:labyrinthCols="20"
+        app:labyrinthRows="20"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@id/deleteButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,6 +41,6 @@
         app:layout_constraintBottom_toTopOf="@+id/restartButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/drawView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

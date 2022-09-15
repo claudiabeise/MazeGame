@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documents/Projects/MazeGame/app/src/main/res/layout/activity_game.xml" value="0.358695652173913" />
+        <entry key="..\:/Documents/Projects/MazeGame/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/cscbeise/AndroidStudioProjects/MazeGame/app/src/main/res/layout/activity_game.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/cscbeise/AndroidStudioProjects/MazeGame/app/src/main/res/layout/activity_level.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/cscbeise/AndroidStudioProjects/MazeGame/app/src/main/res/layout/activity_main.xml" value="0.22" />
