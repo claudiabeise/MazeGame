@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
@@ -79,6 +80,19 @@ public class Labyrinth {
     createCells(rows, cols);
     createEdges(rows, cols);
     createLabyrinthAldousBroder();
+    updateCellEdges();
+  }
+
+  private void updateCellEdges() {
+    cells.parallelStream()
+      .flatMap(Vector::parallelStream)
+      .map(Cell::getEdges)
+      .flatMap(Set::parallelStream)
+      .forEach(edge -> {
+        int index = edges.indexOf(edge);
+        edge.setVisible(edges.get(index).isVisible());
+        edge.setLength(edges.get(index).getLength());
+      });
   }
 
   public void createEdges(int rows, int cols) {
@@ -88,9 +102,11 @@ public class Labyrinth {
         Edge e = new Edge(i, j, i, (j + 1), getSquareLength());
         if (i - 1 >= 0) {
           e.getCells().add(cells.get(i - 1).get(j));
+          cells.get(i - 1).get(j).getEdges().add(e);
         }
         if (i < rows) {
           e.getCells().add(cells.get(i).get(j));
+          cells.get(i).get(j).getEdges().add(e);
         }
         edges.add(e);
       }
@@ -100,9 +116,11 @@ public class Labyrinth {
         Edge e = new Edge(i, j, (i + 1), j, getSquareLength());
         if (j - 1 >= 0) {
           e.getCells().add(cells.get(i).get(j - 1));
+          cells.get(i).get(j - 1).getEdges().add(e);
         }
         if (j < cols) {
           e.getCells().add(cells.get(i).get(j));
+          cells.get(i).get(j).getEdges().add(e);
         }
         edges.add(e);
       }
@@ -153,6 +171,7 @@ public class Labyrinth {
     for (Edge edge : edges) {
       edge.setLength(getSquareLength());
     }
+    updateCellEdges();
   }
 
   private Edge getWall(Cell a, Cell b) {

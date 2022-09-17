@@ -25,15 +25,16 @@ public class Edge {
     this.visible = true;
   }
 
-  @NonNull
   @Override
+  @NonNull
   public String toString() {
     return "Edge{" +
-      "x0=" + x0 +
+      "visible=" + visible +
+      ", x0=" + x0 +
       ", y0=" + y0 +
       ", x=" + x +
       ", y=" + y +
-      ", cells=" + cells +
+      ", length=" + length +
       '}';
   }
 
@@ -104,5 +105,38 @@ public class Edge {
 
   public void setLength(int length) {
     this.length = length;
+  }
+
+  public Line getLine() {
+    return buildLine();
+  }
+
+  public Line buildLine() {
+    double a = (y0 - y) * length;
+    double b = (x - x0) * length;
+    double c = ((x0 * y) - (x * y0)) * (length * length);
+    return new Line(a, b, c);
+  }
+
+  public class Line {
+    double a;
+    double b;
+    double c;
+
+    public Line(double a, double b, double c) {
+      this.a = a;
+      this.b = b;
+      this.c = c;
+    }
+
+    @Override
+    @NonNull
+    public String toString() {
+      return "Line{" +
+        "a=" + a +
+        ", b=" + b +
+        ", c=" + c +
+        '}';
+    }
   }
 }

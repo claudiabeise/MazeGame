@@ -13,8 +13,12 @@ import com.example.mazegame.internal.Edge;
 import com.example.mazegame.internal.Labyrinth;
 import com.example.mazegame.internal.Player;
 import com.example.mazegame.R;
+import com.example.mazegame.internal.PlayerListener;
 
-public class DrawView extends View {
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class DrawView extends View implements PlayerListener {
   private final Paint paint = new Paint();
   private final Integer cellColor;
   private final Integer edgeColor;
@@ -24,6 +28,15 @@ public class DrawView extends View {
   private Integer labyrinthRows;
   private Integer labyrinthCols;
   private Player player;
+  private Timer timer = new Timer("PlayerTimer");
+  private final TimerTask movePlayer = new TimerTask() {
+    @Override
+    public void run() {
+      if (player != null) {
+        player.setPosition(player.getX() + 1, player.getY() + 1, labyrinth.getCells());
+      }
+    }
+  };
 
   public DrawView(Context context, AttributeSet attr) {
     super(context, attr);
@@ -37,6 +50,8 @@ public class DrawView extends View {
     labyrinth = new Labyrinth(labyrinthRows, labyrinthCols, 200, 200);
     labyrinth.buildLabyrinth();
     player = new Player(15, 15, labyrinth.getSquareLength()/5);
+    player.addListener(this);
+    timer.schedule(movePlayer, 0L, 100L);
   }
 
   @Override
@@ -67,7 +82,7 @@ public class DrawView extends View {
     }
 
     paint.setStyle(Paint.Style.FILL);
-    paint.setColor(playerColor);
+    paint.setColor((player.isColliding()) ? Color.BLUE : playerColor);
     canvas.drawCircle(player.getX(), player.getY(), player.getRadius(), paint);
   }
 
@@ -84,6 +99,11 @@ public class DrawView extends View {
     labyrinth.resizeCells();
     labyrinth.resizeEdges();
     player.setRadius(labyrinth.getSquareLength()/5);
+    invalidate();
+  }
+
+  @Override
+  public void playerPositionChanged(int oldX, int oldY, int x, int y) {
     invalidate();
   }
 }

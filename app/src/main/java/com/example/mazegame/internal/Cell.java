@@ -2,7 +2,11 @@ package com.example.mazegame.internal;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Cell {
   private int x;
@@ -11,13 +15,18 @@ public class Cell {
   private int col;
   private boolean maze;
   private boolean visited;
+  private Set<Edge> edges;
 
-  @NonNull
   @Override
+  @NonNull
   public String toString() {
     return "Cell{" +
-      "row=" + row +
+      "x=" + x +
+      ", y=" + y +
+      ", row=" + row +
       ", col=" + col +
+      ", maze=" + maze +
+      ", visited=" + visited +
       '}';
   }
 
@@ -49,6 +58,7 @@ public class Cell {
     this.col = col;
     this.maze = maze;
     this.visited = false;
+    edges = new HashSet<>();
   }
 
   public int getRow() {
@@ -89,5 +99,13 @@ public class Cell {
 
   public void setMaze(boolean maze) {
     this.maze = maze;
+  }
+
+  public Set<Edge> getEdges() {
+    return edges;
+  }
+
+  public void setEdges(Set<Edge> edges) {
+    this.edges = edges;
   }
 }
