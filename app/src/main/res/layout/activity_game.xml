@@ -22,25 +22,15 @@
         android:layout_height="0dp"
         app:cellColor="@color/black"
         app:edgeColor="@color/white"
-        app:nonCellColor="@color/red"
-        app:playerColor="@color/red"
         app:labyrinthCols="20"
         app:labyrinthRows="20"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintBottom_toTopOf="@id/deleteButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/restartButton"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drawView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:nonCellColor="@color/red"
+        app:playerColor="@color/red" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
