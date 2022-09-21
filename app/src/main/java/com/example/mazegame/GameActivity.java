@@ -10,7 +10,7 @@ import android.widget.Button;
 public class GameActivity extends AppCompatActivity {
 
     private Button restartButton;
-    private Button deleteButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         restartButton = findViewById(R.id.restartButton);
-        deleteButton = findViewById(R.id.deleteButton);
+
 
 
 
@@ -32,15 +32,6 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(getApplicationContext(), WinActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
 
     }
